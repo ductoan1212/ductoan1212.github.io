@@ -1,0 +1,7 @@
+title: Ghi chú học tập
+description: Tài liệu và ghi chú từ các khóa học
+theme: jekyll-theme-minima
+collections:
+  courses:
+    output: true
+    permalink: /courses/:name
