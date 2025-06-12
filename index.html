@@ -38,9 +38,12 @@
             margin: 0 0 10px;
             color: #2c3e50;
         }
-        .course p {
-            margin: 0;
-            color: #555;
+        .course ul {
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }
+        .course li {
+            margin: 5px 0;
         }
         .course a {
             color: #3498db;
@@ -65,16 +68,24 @@
     </header>
     <div class="course-list">
         {% for course in site.courses %}
-            <div class="course">
-                <h2>{{ course.title }}</h2>
-                <p>{{ course.excerpt | strip_html | truncate: 100 }}</p>
-                <a href="{{ course.url }}" class="course-link" data-course-id="{{ course.name }}">Xem chi tiết</a>
-            </div>
+            {% assign course_name = course.path | split: '/' | last | split: '.' | first %}
+            {% assign course_folder = course.path | split: '/' | first %}
+            {% if course_folder == 'courses' %}
+                <div class="course">
+                    <h2>{{ course.title }}</h2>
+                    <ul>
+                        {% for file in site.courses %}
+                            {% if file.path contains course_name %}
+                                <li><a href="{{ Courses/test/1.md }}">{{ file.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
     <footer>
         <p>Được tạo bởi [Tên bạn] | Cập nhật lần cuối: 12/06/2025</p>
     </footer>
-    <script src="/index.js"></script>
 </body>
 </html>
