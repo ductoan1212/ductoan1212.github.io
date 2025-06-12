@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghi chú học tập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        h1 {
+            font-size: 2em;
+            color: #2c3e50;
+        }
+        .course-list {
+            margin-top: 20px;
+        }
+        .course {
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .course h2 {
+            font-size: 1.4em;
+            margin: 0 0 10px;
+            color: #2c3e50;
+        }
+        .course p {
+            margin: 0;
+            color: #555;
+        }
+        .course a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .course a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ghi chú học tập của tôi</h1>
+        <p>Tài liệu và ghi chú từ các khóa học tôi đã học</p>
+    </header>
+    <div class="course-list">
+        {% for course in site.courses %}
+            <div class="course">
+                <h2>{{ course.title }}</h2>
+                <p>{{ course.excerpt | strip_html | truncate: 100 }}</p>
+                <a href="{{ course.url }}" class="course-link" data-course-id="{{ course.name }}">Xem chi tiết</a>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>Được tạo bởi [Tên bạn] | Cập nhật lần cuối: 12/06/2025</p>
+    </footer>
+    <script src="/index.js"></script>
+</body>
+</html>
